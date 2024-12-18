@@ -1,9 +1,4 @@
-import { ReactNode } from "react";
-
-interface LabelProps {
-  color: "red" | "yellow";
-  children: ReactNode;
-}
+import type { LabelProps } from "./types";
 
 const Label = (props: LabelProps) => {
   const { children, color } = props;
