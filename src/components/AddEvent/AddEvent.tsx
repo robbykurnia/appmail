@@ -1,9 +1,10 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import Dropdown from "../DropDown";
 
-import type { AddEventProps } from "./types";
 import { useClickEvent } from "./usecases";
 import { options } from "./consts";
+
+import type { AddEventProps } from "./types";
 
 const AddEvent = (props: AddEventProps) => {
   const { className, index } = props;

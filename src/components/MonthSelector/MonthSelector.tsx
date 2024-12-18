@@ -1,7 +1,13 @@
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import { ChevronLeftIcon } from "@heroicons/react/solid";
 
-const MonthSelector = (props) => {
+interface MonthSelectorProps {
+  label: string;
+  onPrevClick: () => void;
+  onNextClick: () => void;
+}
+
+const MonthSelector = (props: MonthSelectorProps) => {
   const { label, onPrevClick, onNextClick } = props;
 
   return (

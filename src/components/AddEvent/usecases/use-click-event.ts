@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
-import { OptionType } from "../../../components/DropDown/types";
 import { useState } from "react";
+
+import { OptionType } from "../../../components/DropDown/types";
 import { addCampaign } from "../../../features/calendar/calendarSlice";
 
 interface Deps {

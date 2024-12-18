@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { updateMonth } from "../../../features/calendar/calendarSlice";
+import getFormatMonthYear from "../../../utils/getFormatMonthYear";
 
 import type { RootState } from "@/app/store";
-import getFormatMonthYear from "../../../utils/getFormatMonthYear";
 
 const useClickEvent = () => {
   const [selectDate, setSelectDate] = useState({

@@ -1,7 +1,11 @@
-import { Campaign, DateType } from "@/models/calendar";
-import getCalendarDates from "../../utils/getCalendarDates";
 import { createSlice } from "@reduxjs/toolkit";
+
+import type { DateType } from "@/models/calendar";
 import type { PayloadAction } from "@reduxjs/toolkit";
+
+import getCalendarDates from "../../utils/getCalendarDates";
+
+import { DUMMY_CAMPAIGN } from "../../models/consts";
 
 const getInitialCalendar = () => {
   const now = new Date();
@@ -34,13 +38,7 @@ export const calendarSlice = createSlice({
       action: PayloadAction<{ index: number; campaign: 1 | 2 | 3 }>
     ) => {
       const { campaign, index } = action.payload;
-      console.log("action.payload", action.payload);
-      const dummy: Record<string, Campaign> = {
-        1: { label: "Campaign idea 1", variant: "yellow" },
-        2: { label: "Campaign idea 2", variant: "yellow" },
-        3: { label: "Campaign idea 3", variant: "red" },
-      };
-      state[index].campaigns.push(dummy[campaign]);
+      state[index].campaigns.push(DUMMY_CAMPAIGN[campaign]);
     },
   },
 });
