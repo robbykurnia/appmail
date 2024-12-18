@@ -30,7 +30,7 @@ const Calendar = () => {
           ))}
         </Grid>
         <Grid>
-          {dates.map((date) => (
+          {dates.map((date, index) => (
             <CellBody key={date.label} className="group/addEvent h-[154px]">
               {date.isCurrentDate ? (
                 <Chip>{date.label}</Chip>
@@ -39,10 +39,15 @@ const Calendar = () => {
               )}
 
               <div className="py-3 flex flex-col gap-y-2.5 items-center w-full">
-                {/* <Label color="red">Campaign Eve</Label>
-                <Label color="yellow">Campaign Idea 1</Label>
-                <Label color="yellow">Campaign Idea 2</Label> */}
-                <AddEvent className="group-hover/addEvent:visible" />
+                {date.campaigns.map((campaign) => (
+                  <Label key={campaign.label} color={campaign.variant}>
+                    {campaign.label}
+                  </Label>
+                ))}
+                <AddEvent
+                  className="group-hover/addEvent:visible"
+                  index={index}
+                />
               </div>
             </CellBody>
           ))}

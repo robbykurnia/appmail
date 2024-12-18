@@ -7,8 +7,8 @@ const getCalendarDates = (month: number, year: number): Calendar => {
   const currentDate = new Date();
 
   const dates: Calendar = [];
-  const daysInMonth = new Date(year, month + 1, 0).getDate(); // Hari terakhir bulan yang dipilih
-  const firstDayOfMonth = new Date(year, month, 1).getDay(); // Hari pertama bulan yang dipilih
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
 
   const prevMonthDays = firstDayOfMonth === 6 ? 0 : firstDayOfMonth - 1;
   const prevMonthLastDate = new Date(year, month, 0).getDate();
@@ -18,7 +18,7 @@ const getCalendarDates = (month: number, year: number): Calendar => {
     dates.push({
       date: prevMonthDate,
       dayOfWeek: prevMonthDate.toLocaleString("default", { weekday: "long" }),
-      formatted: prevMonthDate.toLocaleDateString(), // Format lokal
+      formatted: prevMonthDate.toLocaleDateString(),
       label: getFormattedDate(prevMonthDate),
       isCurrentDate: false,
       campaigns: [],

@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 
-// TODO: update hex color
 export const containerCx = css`
   font-weight: 500;
   width: fit-content;

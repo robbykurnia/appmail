@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMonth } from "../../../features/calendar/calendarSlice";
 
-import getCalendarDates from "../../../utils/getCalendarDates";
+import type { RootState } from "@/app/store";
 import getFormatMonthYear from "../../../utils/getFormatMonthYear";
 
 const useClickEvent = () => {
@@ -13,42 +15,42 @@ const useClickEvent = () => {
 
   const mountRef = useRef(false);
 
-  const dates = getCalendarDates(selectDate.month, selectDate.year);
+  const calendar = useSelector((state: RootState) => state.calendar);
+  console.log("calendar", calendar);
+  const dispatch = useDispatch();
 
   const handlePrevMonthClick = () => {
-    setSelectDate((prev) => {
-      const { day, month, year } = prev;
+    const { day, month, year } = selectDate;
 
-      if (month === 0) {
-        const selectMonth = 11;
-        const selectYear = year - 1;
-        const label = getFormatMonthYear(selectMonth, selectYear);
-        return { day, month: selectMonth, year: selectYear, label };
-      }
+    let selectMonth = month - 1;
+    let selectYear = year;
 
-      const selectMonth = month - 1;
-      const selectYear = year;
-      const label = getFormatMonthYear(selectMonth, selectYear);
-      return { day, month: month - 1, year: year, label };
-    });
+    if (month === 0) {
+      selectMonth = 11;
+      selectYear = year - 1;
+    }
+
+    const label = getFormatMonthYear(selectMonth, selectYear);
+
+    dispatch(updateMonth({ month: selectMonth, year: selectYear }));
+    setSelectDate({ day, month: selectMonth, year: selectYear, label });
   };
 
   const handleNextMonthClick = () => {
-    setSelectDate((prev) => {
-      const { day, month, year } = prev;
+    const { day, month, year } = selectDate;
 
-      if (month > 10) {
-        const selectMonth = 0;
-        const selectYear = year + 1;
-        const label = getFormatMonthYear(selectMonth, selectYear);
-        return { day, month: selectMonth, year: selectYear, label };
-      }
+    let selectMonth = month + 1;
+    let selectYear = year;
 
-      const selectMonth = month + 1;
-      const selectYear = year;
-      const label = getFormatMonthYear(selectMonth, selectYear);
-      return { day, month: selectMonth, year: selectYear, label };
-    });
+    if (month > 10) {
+      selectMonth = 0;
+      selectYear = year + 1;
+    }
+
+    const label = getFormatMonthYear(selectMonth, selectYear);
+    dispatch(updateMonth({ month: selectMonth, year: selectYear }));
+
+    setSelectDate({ day, month: selectMonth, year: selectYear, label });
   };
 
   useEffect(() => {
@@ -68,7 +70,12 @@ const useClickEvent = () => {
     setSelectDate({ day, month, year, label });
   }, []);
 
-  return { dates, selectDate, handlePrevMonthClick, handleNextMonthClick };
+  return {
+    dates: calendar,
+    selectDate,
+    handlePrevMonthClick,
+    handleNextMonthClick,
+  };
 };
 
 export default useClickEvent;

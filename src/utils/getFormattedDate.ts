@@ -3,7 +3,7 @@ const getFormattedDate = (date: Date) => {
     month: "short",
     day: "numeric",
   });
-  return formatter.format(date); // Format seperti Dec 5
+  return formatter.format(date); // output => Dec 5
 };
 
 export default getFormattedDate;
