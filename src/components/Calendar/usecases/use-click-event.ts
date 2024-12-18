@@ -17,7 +17,6 @@ const useClickEvent = () => {
   const mountRef = useRef(false);
 
   const calendar = useSelector((state: RootState) => state.calendar);
-  console.log("calendar", calendar);
   const dispatch = useDispatch();
 
   const handlePrevMonthClick = () => {

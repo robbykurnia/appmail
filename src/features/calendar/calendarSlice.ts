@@ -30,7 +30,6 @@ export const calendarSlice = createSlice({
     ) => {
       const { month, year } = action.payload;
       const calendar = getCalendarDates(month, year);
-      console.log({ calendar });
       return calendar;
     },
     addCampaign: (
